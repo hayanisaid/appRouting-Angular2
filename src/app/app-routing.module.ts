@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule,Routes} from '@angular/router';
 import  {EmployementComponent} from './employement/employement.component';
 import {DepartmentComponent} from './department/department.component';
+import {DepartmentDetailsComponent} from './department-details/department-details.component';
 import {AppComponent} from './app.component';
 
 
@@ -11,8 +12,9 @@ import {AppComponent} from './app.component';
 	},
 	{
      path:'employement',component:EmployementComponent
-	}
-
+	},
+	{path:'department-details/:id',component:DepartmentDetailsComponent}
+    
 	];
 
 @NgModule({
@@ -32,4 +34,4 @@ export class AppRoutingModule{}
 
 
 
-export const appListComponent=[EmployementComponent,DepartmentComponent];
+export const appListComponent=[EmployementComponent,DepartmentComponent,DepartmentDetailsComponent];
