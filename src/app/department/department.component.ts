@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import {Router}  from '@angular/router';
+import {Router,ActivatedRoute,Params}  from '@angular/router';
 
 @Component({
   selector: 'app-department',
   template:`
      <h3>Department List</h3>
-     <ul (click)="onSelect(depart)" *ngFor="let depart of department">
-     <li>{{depart.name}}</li>
+     <ul    *ngFor="let depart of department">
+     <li (click)="onSelect(depart)" [class.selected]="checkHielight(depart)" >{{depart.name}}</li>
      </ul>
  
   `,
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
-
-  constructor(private route:Router) { }
+  public selectedId;
+  constructor(private _route:Router,private _router:ActivatedRoute) { }
 
   ngOnInit() {
+  	 this._router.params.subscribe((param:Params)=>{
+    	let id= parseInt(param['id']);
+    	this.selectedId=id;
+
+    })
   }
 
   department =
@@ -29,9 +34,14 @@ export class DepartmentComponent implements OnInit {
    {'id':5 ,"name":"Java"}
   ]
 
-  onSelect(depart){
-  	// it take 2 params first the path the second the id
-   this.route.navigate(['department-details/',depart.id]);
-  }
+  
  
+ checkHielight(depart){
+ 	return  depart.id === this.selectedId;
+ }
+
+ onSelect(depart){
+  	// it take 2 params first the path the second the id
+   this._route.navigate(['department-details/',depart.id]);
+  }
 }

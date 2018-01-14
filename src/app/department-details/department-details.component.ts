@@ -10,6 +10,7 @@ import {ActivatedRoute,Router,Params} from '@angular/router';
        <p> you navigated to Department detail id={{departId}}</p>
        <a (click)="goPrev()">Prev</a>
        <a (click)="goNext()">Next</a>
+       <button (click)="goBack()" >Back</button>
        </div>
     `
   
@@ -42,5 +43,11 @@ export class DepartmentDetailsComponent implements OnInit {
  goNext(){
  	let nextId=this.departId + 1;
  	this._router.navigate(['department-details',nextId]);
+ }
+
+ /*back to the origin list*/
+ goBack(){
+ 	let selectedId=this.departId?this.departId:null;
+ 	this._router.navigate(['department/',{id:selectedId}]);
  }
 }
