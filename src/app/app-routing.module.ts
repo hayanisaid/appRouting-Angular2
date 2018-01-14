@@ -9,7 +9,10 @@ import {PageNotfoundComponent} from './page-notfound/page-notfound.component';
 
  const routes:Routes=[
  /*the empty path is the default page like index.html*/
-   {path:'', component:AppComponent},
+   // {path:'', component:AppComponent},
+   /*using redirect  pathMathc[full,prefix]
+   use prefix if you want to force any redirect to one path*/
+   {path:'', redirectTo:'/department' ,pathMatch:"full"},
 	{
      path:'department',component:DepartmentComponent
 	},
